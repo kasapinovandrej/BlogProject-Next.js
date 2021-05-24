@@ -1,7 +1,22 @@
-import React from 'react'
+import React from "react";
+import Hero from "../components/home-page/hero";
+import FeaturedPosts from "../components/home-page/featured-posts";
+import { getFeaturedPosts } from "../helpers/posts-util";
 
-const HomePage = () => {
-  return <div>HomePage</div>;
-}
+const HomePage = (props) => {
+  return (
+    <>
+      <Hero />
+      <FeaturedPosts posts={props.posts} />
+    </>
+  );
+};
 
-export default HomePage
+export const getStaticProps = () => {
+  const featuredPosts = getFeaturedPosts();
+  return {
+    props: { posts: featuredPosts },
+  };
+};
+
+export default HomePage;
