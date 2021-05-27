@@ -15,9 +15,11 @@ const handler = async (req, res) => {
             message
         }
 
+        const connectionString = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_clustername}.vxoj4.mongodb.net/${process.env.mongodb_database}?retryWrites=true&w=majority`
+
         let client;
         try {
-            client = await MongoClient.connect(`mongodb+srv://kasapinovandrej:Kasapinov987@cluster0.vxoj4.mongodb.net/blog-site?retryWrites=true&w=majority`)
+            client = await MongoClient.connect(connectionString)
         } catch (err) {
             res.status(500).json({ message: 'Could not connect to database.' })
             return;

@@ -3,8 +3,13 @@ import classes from "./post-content.module.scss";
 import PostHeader from "./post-header";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
-import { Prism } from "react-syntax-highlighter";
-import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { PrismLight } from "react-syntax-highlighter";
+import js from "react-syntax-highlighter/dist/cjs/languages/prism/javascript";
+import css from "react-syntax-highlighter/dist/cjs/languages/prism/css";
+import atomDark from "react-syntax-highlighter/dist/cjs/styles/prism/atom-dark";
+
+PrismLight.registerLanguage("js", js);
+PrismLight.registerLanguage("css", css);
 
 const PostContent = (props) => {
   const { post } = props;
@@ -30,7 +35,7 @@ const PostContent = (props) => {
     },
     code: (code) => {
       const { children } = code;
-      return <Prism language="js" children={children} style={atomDark} />;
+      return <PrismLight language="js" children={children} style={atomDark} />;
     },
   };
 
